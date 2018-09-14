@@ -20,11 +20,15 @@ public class MainActivity extends Activity {
 		new Thread() {
 			@Override
 			public void run() {
-				Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-				if (location != null) {
-					double latitude = location.getLatitude(); // 经度
-					double longitude = location.getLongitude(); // 纬度
-					System.out.print(latitude+"============"+longitude);
+				try{
+					Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+					if (location != null) {
+						double latitude = location.getLatitude(); // 经度
+						double longitude = location.getLongitude(); // 纬度
+						System.out.print(latitude+"============"+longitude);
+					}
+				}catch (Exception e){
+					System.out.print("========catch");
 				}
 			}
 		}.start();

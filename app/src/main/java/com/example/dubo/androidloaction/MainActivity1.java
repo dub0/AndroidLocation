@@ -9,11 +9,6 @@ public class MainActivity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //getLocation();  //1
-        //getLocation1();  //2
         LocationUtils.getInstance().getLocations(this);
-        //getLocation3();  //4
-
-
     }
 }
