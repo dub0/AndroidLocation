@@ -27,7 +27,7 @@ public class LocationUtils {
     } ;
     private Location location;
     static LocationUtils locationUtils;
-    MainActivity activity;
+    MainActivity1 activity;
 
     public static LocationUtils getInstance() {
         if (locationUtils == null) {
@@ -36,20 +36,18 @@ public class LocationUtils {
         return locationUtils;
     }
 
-    public Location getLocations(final MainActivity activity) {
+    public Location getLocations(final MainActivity1 activity) {
         this.activity = activity;
         try {
             locationManager = (LocationManager)activity.getSystemService(Context.LOCATION_SERVICE);
             List<String> providers = locationManager.getProviders(true);//// true 代表从打开的设备中查找
 
             String locationProvider = null;
-            if (providers.contains(LocationManager.GPS_PROVIDER)) {
-                //如果是GPS
-                locationProvider = LocationManager.GPS_PROVIDER;
-            } else if (providers.contains(LocationManager.NETWORK_PROVIDER)) {
-                //如果是Network
+            if (providers.contains(LocationManager.NETWORK_PROVIDER)) {
                 locationProvider = LocationManager.NETWORK_PROVIDER;
-            } else {
+            } else if (providers.contains(LocationManager.GPS_PROVIDER)) {
+                locationProvider = LocationManager.GPS_PROVIDER;
+            } else{
                 Intent i = new Intent();
                 i.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 activity.startActivity(i);
@@ -96,7 +94,7 @@ public class LocationUtils {
         //当坐标改变时触发此函数，如果Provider传进相同的坐标，它就不会被触发
         @Override
         public void onLocationChanged(Location location) {
-            //DubLogUtils.i("=================location.."+location);
+            System.out.print(location+"============"+location);
         }
     };
 
